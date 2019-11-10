@@ -14,6 +14,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
+  
+  var _server = "XXX.XXX.XXX.XXX";
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       'password': pass
     };
     var jsonResponse = null;
-    var response = await http.get("http://s2.efdev.ru/api/user_check?user="+data['email']+"&password="+data['password']);
+    var response = await http.get(_server+"/api/user_check?user="+data['email']+"&password="+data['password']);
     print(response.body);
     if(response.statusCode == 200) {
       jsonResponse = json.decode(response.body);

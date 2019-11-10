@@ -76,8 +76,6 @@ class _MainPageState extends State<MainPage> {
           _isLoadingFX = false;
         });
         sharedPreferences.setString("prediction", jsonResponse['prediction']);
-        // TODO ADD PROBABILITY HERE
-        //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MainPage()), (Route<dynamic> route) => false);
       }
     }
     else {
@@ -93,7 +91,7 @@ class _MainPageState extends State<MainPage> {
   predictInv(String fxpair, tf, token) async {
 
     var jsonResponse = null;
-    var _server = "http://s2.efdev.ru";
+    var _server = "XXX.XXX.XXX.XXX";
 
     var response = await http.get(_server+"/api/invpredict?pair="+fxpair+"&tf="+tf+'&token='+token);
     print(response.body);
@@ -106,9 +104,7 @@ class _MainPageState extends State<MainPage> {
         sharedPreferences.setString("recommend_inv", jsonResponse['recommendation']);
         sharedPreferences.setString("probability_inv", jsonResponse['probability']);
 
-        // TODO ADD PROBABILITY HERE
-        //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MainPage()), (Route<dynamic> route) => false);
-      }
+       }
     }
     else {
       setState(() {
@@ -123,7 +119,7 @@ class _MainPageState extends State<MainPage> {
   check_signal(String fxpair, tf, token, entry, takeprofit) async {
 
     var jsonResponse = null;
-    var _server = "http://s2.efdev.ru";
+    var _server = "XXX.XXX.XXX.XXX";
 
     var response = await http.get(_server+"/api/sigeval?pair="+fxpair+"&tf="+tf+'&token='+token+'&open='+entry+'&tp='+takeprofit);
     print(response.body);
@@ -182,7 +178,7 @@ class _MainPageState extends State<MainPage> {
                   Text('Currency pair:' + sharedPreferences.get('fxpair')),
                   Text('TimeFrame: ' + sharedPreferences.get('tf')),
                   Text('Prediction: ' + sharedPreferences.get('prediction')),
-                  //Text('Probability: '+((75+random.nextInt(18))/100).toString()),
+
                   Icon(ArIcon),
 
                   Text('Result from investing:\n',
@@ -206,8 +202,7 @@ class _MainPageState extends State<MainPage> {
             )
         );
 
-        //swap = !swap;
-        //OnebuttonText = 'Predict Trend';
+
       }
       else if (swap_state == 2) {
         Random random = Random();
@@ -414,10 +409,7 @@ class _MainPageState extends State<MainPage> {
 
                 ],)),
 
-            //Padding(
-            //  padding: EdgeInsets.all(_minimumPadding * 2),
-            //  child: Text('Prediction: '),
-            //),
+
 
             swapTile
 
@@ -429,10 +421,6 @@ class _MainPageState extends State<MainPage> {
   }
 
 
-  //  body: Center(child: Text( sharedPreferences.getString("token") )),   //"Main Page")),
-    //  drawer: Drawer(),
-   // );
- // }
 
   Widget getImageAsset() {
 
@@ -445,34 +433,3 @@ class _MainPageState extends State<MainPage> {
 
 
 
-
-
-/*
-import 'package:flutter/material.dart';
-import 'login_page.dart';
-import 'home_page.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  final routes = <String, WidgetBuilder>{
-    LoginPage.tag: (context) => LoginPage(),
-    HomePage.tag: (context) => HomePage(),
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Kodeversitas',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
-        fontFamily: 'Nunito',
-      ),
-      home: LoginPage(),
-      routes: routes,
-    );
-  }
-}
-
- */

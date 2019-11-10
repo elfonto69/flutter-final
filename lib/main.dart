@@ -65,7 +65,7 @@ class _MainPageState extends State<MainPage> {
   predictFX(String fxpair, tf, token) async {
 
     var jsonResponse = null;
-    var _server = "http://s2.efdev.ru";
+    var _server = "XXX.XXX.XXX.XXX";
 
     var response = await http.get(_server+"/api/predict?pair="+fxpair+"&tf="+tf+'&token='+token);
     print(response.body);
